@@ -1,16 +1,21 @@
 {
-  "name": "snapshot",
+  "name": "headless-chrome",
+  "engines": {
+    "node": "8.2.1"
+  },
   "version": "1.0.0",
-  "description": "test",
-  "main": "index.js",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "puppeteer": "^1.13.0",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node index.js"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "puppeteer": "^10.4.0"
-  }
+  "license": "ISC"
 }
