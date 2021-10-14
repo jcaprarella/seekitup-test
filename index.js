@@ -19,6 +19,7 @@ app.get("/", async (request, response) => {
   }
 });
 
-var listener = app.listen(3000, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+const PORT = process.env.PORT || 3000;
+var listener = app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
 });
