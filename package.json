@@ -1,14 +1,14 @@
 {
   "name": "headless-chrome",
   "engines": {
-    "node": "10"
+    "node": "8.2.1"
   },
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
     "express": "^4.16.2",
-    "puppeteer": "^13.0.0",
+    "puppeteer": "^1.13.0",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {},
