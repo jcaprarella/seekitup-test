@@ -25,11 +25,13 @@ app.get('/', function(req, res) {
 
             const page = await browser.newPage();
             await page.goto(urlToScreenshot);
-            await page.screenshot().then(function(buffer) {
-                res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
-                res.setHeader('Content-Type', 'image/png');
-                res.send(buffer)
-            });
+			setTimeout(() =>{
+				await page.screenshot().then(function(buffer) {
+					res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
+					res.setHeader('Content-Type', 'image/png');
+					res.send(buffer)
+				});
+			}, 1000);
 
             await browser.close();
         })();
