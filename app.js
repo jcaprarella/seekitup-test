@@ -26,9 +26,9 @@ app.get('/', function(req, res) {
             const page = await browser.newPage();
             await page.goto(urlToScreenshot, {
 			  timeout: 50000,
-			  waitUntil: ['domcontentloaded', 'networkidle0'],
+			  waitUntil: ['domcontentloaded', 'networkidle0', 'networkidle2'],
 			});
-			page.waitForTimeout(1000).then(() => console.log('Waited a second!'));
+			await page.waitForTimeout(1000).then(() => console.log('Waited a second!'));
 			await page.screenshot().then(function(buffer) {
 				res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
 				res.setHeader('Content-Type', 'image/png');
