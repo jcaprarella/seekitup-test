@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
 			
 			if (parseUrl(req.query.isFB) !== undefined && req.query.isFB === 'true'){
 			    console.log('Es FB');
-				page.setContent(`
+				await page.setContent(`
 				  <html>
 					  <body style="margin:0px;">
 						<div
@@ -45,7 +45,10 @@ app.get('/', function(req, res) {
 						</script>
 					  </body>
 					</html>
-				`);
+				`, {
+					waitUntil: ['domcontentloaded']
+				});
+				page.addScriptTag({url:'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2', type: 'async'});
 			} else {
 				await page.goto(urlToScreenshot, {
 				  timeout: 0,
