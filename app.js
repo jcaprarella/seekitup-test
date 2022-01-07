@@ -20,10 +20,13 @@ app.get('/', function(req, res) {
         console.log('Screenshotting: ' + urlToScreenshot);
         (async() => {
             const browser = await puppeteer.launch({
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+				headless: false
             });
 
             const page = await browser.newPage();
+			page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
+			
             await page.goto(urlToScreenshot, {
 			  timeout: 0,
 			  waitUntil: ['domcontentloaded', 'networkidle0', 'networkidle2'],
