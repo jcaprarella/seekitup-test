@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
             const page = await browser.newPage();
 			page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
 			
-			if (parseUrl(req.query.isFB) !== undefined){
+			if (parseUrl(req.query.isFB) !== undefined && req.query.isFB === 'true'){
 			    console.log('Es FB');
 				page.setContent(`
 				  <html><body>FB</body></html>
