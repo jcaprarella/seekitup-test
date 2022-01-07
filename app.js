@@ -40,7 +40,9 @@ app.get('/', function(req, res) {
 							class="fb-post"
 							data-href="`+urlToScreenshot+`"
 						></div>
-						<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+						<script>
+							window.top.appendChild(document.getElementsByClassName('fb-post')[0])
+						</script>
 					  </body>
 					</html>
 				`);
