@@ -31,9 +31,9 @@ app.get('/', function(req, res) {
 			  waitUntil: ['domcontentloaded', 'networkidle0', 'networkidle2'],
 			});
 			console.log('Start loading');
-			await page.waitForTimeout(5000).then(async() => {
+			await page.waitForTimeout(3000).then(async() => {
 				console.log('Capture');
-				await page.screenshot().then(function(buffer) {
+				await page.screenshot({omitBackground: true}).then(function(buffer) {
 					res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
 					res.setHeader('Content-Type', 'image/png');
 					res.send(buffer)
