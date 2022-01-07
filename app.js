@@ -23,12 +23,21 @@ app.get('/', function(req, res) {
                 args: [
 					'--no-sandbox',
 					'--disable-setuid-sandbox',
-					'--disable-features=SameSiteByDefaultCookies,CookiesWithoutSameSiteMustBeSecure'
+					'--disable-features=SameSiteByDefaultCookies,CookiesWithoutSameSiteMustBeSecure',
+					'--disable-web-security'
 				]
             });
 
             const page = await browser.newPage();
 			page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
+			
+			await page.setExtraHTTPHeaders({
+				'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
+				'upgrade-insecure-requests': '1',
+				'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+				'accept-encoding': 'gzip, deflate, br',
+				'accept-language': 'en-US,en;q=0.9,en;q=0.8'
+			});
 			
             await page.goto(urlToScreenshot, {
 			  timeout: 0,
