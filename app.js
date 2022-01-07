@@ -28,14 +28,15 @@ app.get('/', function(req, res) {
 			  timeout: 0,
 			  waitUntil: ['domcontentloaded', 'networkidle0', 'networkidle2'],
 			});
-			await page.waitForTimeout(1000).then(() => console.log('Waited a second!'));
-			await page.screenshot().then(function(buffer) {
-				res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
-				res.setHeader('Content-Type', 'image/png');
-				res.send(buffer)
-			});
+			await page.waitForTimeout(1000).then(() => {
+				await page.screenshot().then(function(buffer) {
+					res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
+					res.setHeader('Content-Type', 'image/png');
+					res.send(buffer)
+				});
 
-            await browser.close();
+				await browser.close();
+			});
         })();
     } else {
         res.send('Invalid url: ' + urlToScreenshot);
