@@ -20,8 +20,7 @@ app.get('/', function(req, res) {
         console.log('Screenshotting: ' + urlToScreenshot);
         (async() => {
             const browser = await puppeteer.launch({
-                args: ['--no-sandbox', '--disable-setuid-sandbox'],
-				headless: false
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
 
             const page = await browser.newPage();
