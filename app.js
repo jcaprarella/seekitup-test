@@ -25,7 +25,7 @@ app.get('/', function(req, res) {
 
             const page = await browser.newPage();
             await page.goto(urlToScreenshot, {
-			  timeout: 50000,
+			  timeout: 0,
 			  waitUntil: ['domcontentloaded', 'networkidle0', 'networkidle2'],
 			});
 			await page.waitForTimeout(1000).then(() => console.log('Waited a second!'));
