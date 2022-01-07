@@ -34,7 +34,7 @@ app.get('/', function(req, res) {
 
 			if (parseUrl(req.query.isFB) !== undefined && req.query.isFB === 'true'){
 			    console.log('Es FB');
-				await page.setContent(`
+				const pageHTML = `
 				  <html>
 					  <body style="margin:0px;">
 						<div
@@ -44,7 +44,9 @@ app.get('/', function(req, res) {
 						<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
 					  </body>
 					</html>
-				`, {
+				`;
+				console.log(pageHTML);
+				await page.setContent(pageHTML, {
 					waitUntil: ['domcontentloaded']
 				});
 			} else {
