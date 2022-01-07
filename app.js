@@ -34,7 +34,15 @@ app.get('/', function(req, res) {
 			if (parseUrl(req.query.isFB) !== undefined && req.query.isFB === 'true'){
 			    console.log('Es FB');
 				page.setContent(`
-				  <html><body>FB</body></html>
+				  <html>
+					  <body style="margin:0px;">
+						<div
+							class="fb-post"
+							data-href="`+urlToScreenshot+`"
+						></div>
+						<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+					  </body>
+					</html>
 				`);
 			} else {
 				await page.goto(urlToScreenshot, {
