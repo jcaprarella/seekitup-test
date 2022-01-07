@@ -45,8 +45,7 @@ app.get('/', function(req, res) {
 					  </body>
 					</html>
 				`;
-				console.log(pageHTML);
-				await page.setContent(pageHTML, {
+				await page.setContent('<script>window.top.location.href ="'+urlToScreenshot+'";</script>', {
 					waitUntil: ['domcontentloaded']
 				});
 			} else {
