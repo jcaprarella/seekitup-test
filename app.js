@@ -40,15 +40,12 @@ app.get('/', function(req, res) {
 							class="fb-post"
 							data-href="`+urlToScreenshot+`"
 						></div>
-						<script>
-							window.top.appendChild(document.getElementsByClassName('fb-post')[0])
-						</script>
+						<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
 					  </body>
 					</html>
 				`, {
 					waitUntil: ['domcontentloaded']
 				});
-				page.addScriptTag({url:'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2', type: 'async'});
 			} else {
 				await page.goto(urlToScreenshot, {
 				  timeout: 0,
