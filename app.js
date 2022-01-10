@@ -48,6 +48,29 @@ app.get('/', function(req, res) {
 				await page.setContent('<script>window.top.location.href ="'+urlToScreenshot+'";</script>', {
 					waitUntil: ['domcontentloaded']
 				});
+			} else if (parseUrl(req.query.isLI) !== undefined && req.query.isLI === 'true'){
+			    console.log('Es LinkedIn');
+				const pageHTML = `
+				  <html>
+					  <body style="margin:0px;">
+						<div
+							class="badge-base LI-profile-badge"
+							data-locale="es_ES"
+							data-size="large"
+							data-theme="light"
+							data-type="HORIZONTAL"
+							data-vanity="`+urlToScreenshot+`"
+							style="width: 336px; display: inline-block;"
+						>
+						<a class="LI-simple-link" href="`+urlToScreenshot+`?trk=profile-badge"></a>
+						</div>
+						<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+					  </body>
+					</html>
+				`;
+				await page.setContent(pageHTML, {
+					waitUntil: ['domcontentloaded']
+				});
 			} else {
 				await page.goto(urlToScreenshot, {
 				  timeout: 0,
