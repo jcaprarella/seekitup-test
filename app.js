@@ -30,10 +30,10 @@ app.get('/', function(req, res) {
 
             const page = await browser.newPage();
 			page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
-			page.setBypassCSP(true);
 
 			if (parseUrl(req.query.isFB) !== undefined && req.query.isFB === 'true'){
 			    console.log('Es FB');
+				page.setBypassCSP(true);
 				const pageHTML = `
 				  <html>
 					  <body style="margin:0px;">
