@@ -78,7 +78,7 @@ app.get('/', function(req, res) {
 				});
 			}
 			console.log('Start loading');
-			await page.waitForTimeout(3000).then(async() => {
+			await page.waitForTimeout(500).then(async() => {
 				console.log('Capture');
 				await page.screenshot({omitBackground: true}).then(function(buffer) {
 					res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
