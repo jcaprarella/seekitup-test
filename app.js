@@ -73,7 +73,6 @@ app.get('/', function(req, res) {
 				});
 			} else {
 				await page.goto(urlToScreenshot, {
-				  timeout: 0,
 				  waitUntil: ['domcontentloaded', 'networkidle0', 'networkidle2'],
 				});
 			}
